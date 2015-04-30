@@ -15,5 +15,5 @@ module.exports = (robot) ->
     'Collectively, kittens yawn about 200 million time per hour.'
   ]
 
-  robot.hear /bro|broscience|flex|even lift|do you lift|lift|do you even/i, (res) ->
+  robot.hear /cat|cat fact|cat facts/i, (res) ->
     res.send res.random catFacts
