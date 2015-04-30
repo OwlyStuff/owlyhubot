@@ -26,5 +26,5 @@ module.exports = (robot) ->
     "http://www.demgainz.com/pics/t/l-135.jpg"
   ]
 
-  robot.hear /bro|broscience|flex|even lift|do you lift|lift|do you even/i, (res) ->
+  robot.hear /broscience|flex|even lift|do you lift|do you even/i, (res) ->
     res.send res.random broQuotes
