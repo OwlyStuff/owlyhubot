@@ -13,5 +13,6 @@
   "hubot-business-cat",
   "hubot-devops-reactions",
   "hubot-soon",
-  "hubot-github-repo-event-notifier"
+  "hubot-github-repo-event-notifier",
+  "hubot-ambush"
 ]
