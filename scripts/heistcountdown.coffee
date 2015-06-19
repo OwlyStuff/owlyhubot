@@ -14,7 +14,7 @@ module.exports = (robot) ->
 
     now       = new Date()
     day       = now.getDay()
-    hour      = now.getHours()
+    hour      = now.getUTCHours()
     outputStr = ''
 
     if day < 5 # days left to heist
