@@ -28,7 +28,7 @@ module.exports = (robot) ->
 
     if day == 5 # it's heists day
       if hour < 21
-        outputStr += 21-hour + ' hours '
+        outputStr += 21-hour-2 + ' hours '
 
     outputStr += 'to go until Heist Time'
 
