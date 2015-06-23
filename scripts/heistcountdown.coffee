@@ -10,7 +10,7 @@
 
 module.exports = (robot) ->
 
-  robot.hear /gta|heist/i, (res) ->
+  robot.respond /heist me/i, (res) ->
 
     now       = new Date()
     day       = now.getDay()
