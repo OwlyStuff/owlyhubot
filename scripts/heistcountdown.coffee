@@ -32,6 +32,4 @@ module.exports = (robot) ->
 
     outputStr += 'to go until Heist Time'
 
-    setTimeout () ->
-      res.send outputStr
-    , Math.round(Math.random() * (3000 - 500)) + 500
+    res.send outputStr
