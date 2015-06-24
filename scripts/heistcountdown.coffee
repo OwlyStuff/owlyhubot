@@ -17,19 +17,28 @@ module.exports = (robot) ->
     hour      = now.getUTCHours()
     outputStr = ''
 
-    if day < 5 # days left to heist
-        outputStr += 5 - day + ' days '
+    day = 5 # friday
+    d   = new Date
+    (day = (Math.abs(+day || 0) % 7) - d.getDay()) < 0 && (day += 7)
 
-    if day == 6
-        outputStr += 6 + ' days '
+    day && d.setDate(d.getDate() + day)
 
-    if day == 7
-        outputStr += 5 + ' days '
+    nextFriday = d
+    # 9pm
+    nextFriday.setHours(21, "00", "00", "00")
 
-    if day == 5 # it's heists day
-      if hour < 21
-        outputStr += 21-hour-2 + ' hours '
+    # get total seconds between the times
+    delta = Math.abs(nextFriday - now) / 1000;
 
-    outputStr += 'to go until Heist Time'
+    days = Math.floor(delta / 86400);
+    delta -= days * 86400;
 
-    res.send outputStr
+    hours = Math.floor(delta / 3600) % 24;
+    delta -= hours * 3600;
+
+    minutes = Math.floor(delta / 60) % 60;
+    delta -= minutes * 60;
+
+    seconds = Math.floor(delta % 60);
+
+    res.send "Heisting in #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds!"
