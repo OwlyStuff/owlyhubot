@@ -25,7 +25,7 @@ module.exports = (robot) ->
 
     nextFriday = d
     # 9pm
-    nextFriday.setHours(21, "00", "00", "00")
+    nextFriday.setUTCHours(21, "00", "00", "00")
 
     # get total seconds between the times
     delta = Math.abs(nextFriday - now) / 1000;
