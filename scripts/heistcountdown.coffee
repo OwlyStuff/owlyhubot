@@ -34,6 +34,7 @@ module.exports = (robot) ->
     delta -= days * 86400;
 
     hours = Math.floor(delta / 3600) % 24;
+    hours = hours-1 # tz?
     delta -= hours * 3600;
 
     minutes = Math.floor(delta / 60) % 60;
