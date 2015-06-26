@@ -10,7 +10,12 @@
 
 module.exports = (robot) ->
 
-  robot.respond /heist me/i, (res) ->
+  robot.hear /heist/i, (res) ->
+
+    room = res.message.room
+
+    return if room != 'gta' && room != 'gaming'
+    # body...
 
     now       = new Date()
     day       = now.getDay()
