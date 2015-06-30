@@ -50,7 +50,7 @@ module.exports = (robot) ->
     replies = [
         "Heisting in #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds!",
         "#{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds until MixUps, Gamez, and LOLZ",
-        "T minus #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds}",
+        "T minus #{days} days, #{hours} hours, #{minutes} minutes, #{seconds} Seconds",
         "Some days, Some hours, Some minutes, and #{seconds} to wait...",
         "#{seconds} seconds, #{hours} hours, #{days} days, and #{minutes} minutes time heisting until",
         "#{days}.#{hours}.#{minutes}.#{seconds}",
