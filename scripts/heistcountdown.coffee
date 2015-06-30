@@ -47,4 +47,14 @@ module.exports = (robot) ->
 
     seconds = Math.floor(delta % 60);
 
-    res.send "Heisting in #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds!"
+    replies = [
+        "Heisting in #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds!",
+        "#{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds until MixUps, Gamez, and LOLZ",
+        "T minus #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds}",
+        "Some days, Some hours, Some minutes, and #{seconds} to wait...",
+        "#{seconds} seconds, #{hours} hours, #{days} days, and #{minutes} minutes time heisting until",
+        "#{days}.#{hours}.#{minutes}.#{seconds}",
+        "#{days}D#{hours}H#{minutes}M#{seconds}S",
+    ]
+
+    res.send res.random replies
