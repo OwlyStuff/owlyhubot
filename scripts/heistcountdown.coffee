@@ -40,6 +40,8 @@ module.exports = (robot) ->
 
     hours = Math.floor(delta / 3600) % 24;
     hours = hours-1 # tz?
+    if hours < 0
+      hours = 0
     delta -= hours * 3600;
 
     minutes = Math.floor(delta / 60) % 60;
@@ -47,14 +49,26 @@ module.exports = (robot) ->
 
     seconds = Math.floor(delta % 60);
 
-    replies = [
+    if days == 0
+      res.send "It's heist day!"
+
+      if hours == 0
+          res.send "And it's nearly time..."
+
+          if minutes > 0
+            res.send "#{minutes} minutes to go"
+
+      # we only look forward to next friday, so after 9 we get negative hours
+      if hours < 0
+        hours = 0
+
+    if days > 0
+      replies = [
         "Heisting in #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds!",
-        "#{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds until MixUps, Gamez, and LOLZ",
+        "#{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds until we play... guess this MixUp!",
         "T minus #{days} days, #{hours} hours, #{minutes} minutes, #{seconds} Seconds",
-        "Some days, Some hours, Some minutes, and #{seconds} to wait...",
-        "#{seconds} seconds, #{hours} hours, #{days} days, and #{minutes} minutes time heisting until",
         "#{days}.#{hours}.#{minutes}.#{seconds}",
         "#{days}D#{hours}H#{minutes}M#{seconds}S",
-    ]
+      ]
 
-    res.send res.random replies
+      res.send res.random replies
