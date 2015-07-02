@@ -40,8 +40,6 @@ module.exports = (robot) ->
 
     hours = Math.floor(delta / 3600) % 24;
     hours = hours-1 # tz?
-    if hours < 0
-      hours = 0
     delta -= hours * 3600;
 
     minutes = Math.floor(delta / 60) % 60;
