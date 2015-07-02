@@ -49,6 +49,9 @@ module.exports = (robot) ->
 
     seconds = Math.floor(delta % 60);
 
+    if hours < 0
+      hours = 0
+
     if days == 0
       res.send "It's heist day!"
 
@@ -57,10 +60,6 @@ module.exports = (robot) ->
 
           if minutes > 0
             res.send "#{minutes} minutes to go"
-
-      # we only look forward to next friday, so after 9 we get negative hours
-      if hours < 0
-        hours = 0
 
     if days > 0
       replies = [
