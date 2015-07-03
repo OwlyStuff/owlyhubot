@@ -19,7 +19,7 @@ module.exports = (robot) ->
 
     dateNow = new Date();
     dateNext = new Date();
-    heistTime = 9 #9pm
+    heistTime = 21 #9pm
     heistDay = 5 #friday
 
     # Fast forward to tomorrow if we're past heist time
