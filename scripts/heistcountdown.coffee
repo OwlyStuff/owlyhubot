@@ -17,10 +17,14 @@ module.exports = (robot) ->
     return if room != 'gta' && room != 'gaming' && room != 'infinity-testing'
     # body...
 
-    dateNow = new Date();
-    dateNext = new Date();
-    heistTime = 21 #9pm
-    heistDay = 5 #friday
+
+    tzOffset   = 1 # Timezone offset
+    dateOffset = new Date();
+    dateOffset = (dateOffset.getTime() - (tzOffset * 3600 * 1000))
+    dateNow    = new Date(dateOffset);
+    dateNext   = new Date(dateOffset);
+    heistTime  = 21 #9pm
+    heistDay   = 5 #friday
 
     # Fast forward to tomorrow if we're past heist time
     if dateNext.getHours() >= heistTime
