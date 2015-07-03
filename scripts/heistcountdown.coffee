@@ -18,7 +18,9 @@ module.exports = (robot) ->
     # body...
 
     dateNow = new Date();
+    dateNow = new Date(dateNow.getUTCFullYear(), dateNow.getUTCMonth(), dateNow.getUTCDate(),  dateNow.getUTCHours(), dateNow.getUTCMinutes(), dateNow.getUTCSeconds());
     dateNext = new Date();
+    dateNext = new Date(dateNext.getUTCFullYear(), dateNext.getUTCMonth(), dateNext.getUTCDate(),  dateNext.getUTCHours(), dateNext.getUTCMinutes(), dateNext.getUTCSeconds());
     heistTime = 21 #9pm
     heistDay = 5 #friday
 
