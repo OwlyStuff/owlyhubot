@@ -20,7 +20,7 @@ module.exports = (robot) ->
 
     tzOffset   = 1 # Timezone offset
     dateOffset = new Date();
-    dateOffset = (dateOffset.getTime() - (tzOffset * 3600 * 1000))
+    dateOffset = (dateOffset.getTime() + (tzOffset * 3600 * 1000))
     dateNow    = new Date(dateOffset);
     dateNext   = new Date(dateOffset);
     heistTime  = 21 #9pm
