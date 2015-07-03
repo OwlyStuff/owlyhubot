@@ -19,8 +19,7 @@ module.exports = (robot) ->
 
     dateNow = new Date();
     dateNext = new Date();
-    heistStamp  = new Date(dateNow.getUTCFullYear(), dateNow.getUTCMonth(), dateNow.getUTCDate(),  9, dateNow.getUTCMinutes(), dateNow.getUTCSeconds());
-    heistTime = heistStamp.getUTCHours() #9pm
+    heistTime = 9 #9pm
     heistDay = 5 #friday
 
     # Fast forward to tomorrow if we're past heist time
