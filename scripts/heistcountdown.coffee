@@ -14,58 +14,57 @@ module.exports = (robot) ->
 
     room = res.message.room
 
-    return if room != 'gta' && room != 'gaming'
+    return if room != 'gta' && room != 'gaming' && room != 'infinity-testing'
     # body...
 
-    now       = new Date()
-    day       = now.getDay()
-    hour      = now.getUTCHours()
-    outputStr = ''
+    dateNow = new Date();
+    dateNext = new Date();
+    heistTime = 21 #9pm
+    heistDay = 5 #friday
 
-    day = 5 # friday
-    d   = new Date
-    (day = (Math.abs(+day || 0) % 7) - d.getDay()) < 0 && (day += 7)
+    # Fast forward to tomorrow if we're past heist time
+    if dateNext.getHours() >= heistTime
+    	dateNext.setDate(dateNext.getDate() + 1)
 
-    day && d.setDate(d.getDate() + day)
+    # Step forward to next heist day
+    while(dateNext.getDay() != heistDay)
+    	dateNext.setDate(dateNext.getDate() + 1)
 
-    nextFriday = d
-    # 9pm
-    nextFriday.setUTCHours(21, "00", "00", "00")
+    # Set heist time against new date
+    dateNext.setHours(heistTime)
+    dateNext.setMinutes(0)
+    dateNext.setSeconds(0)
 
-    # get total seconds between the times
-    delta = Math.abs(nextFriday - now) / 1000;
+    # Diff that shit
+    dateNowM = dateNow.getTime();
+    dateNextM = dateNext.getTime();
 
-    days = Math.floor(delta / 86400);
-    delta -= days * 86400;
+    # Could be useful
+    day = (24*3600*1000);
+    hour = (3600*1000);
+    minute = (60*1000);
+    second = 1000;
 
-    hours = Math.floor(delta / 3600) % 24;
-    hours = hours-1 # tz?
-    delta -= hours * 3600;
+    # how many milliseconds until next heist day/hour
+    timeToCalc = (dateNextM - dateNowM)
 
-    minutes = Math.floor(delta / 60) % 60;
-    delta -= minutes * 60;
+    # Calculate the floor leaving the remainder for the next time unit
+    days = Math.floor(timeToCalc / day)
+    timeToCalc = timeToCalc % day
 
-    seconds = Math.floor(delta % 60);
+    hours = Math.floor(timeToCalc / hour)
+    timeToCalc = timeToCalc % hour
 
-    if hours < 0
-      hours = 0
+    minutes = Math.floor(timeToCalc / minute)
+    timeToCalc = timeToCalc % minute
 
-    if days == 0
-      res.send "It's heist day!"
+    seconds = Math.floor(timeToCalc / second)
+    timeToCalc = timeToCalc % second
 
-      if hours == 0
-          res.send "And it's nearly time..."
+    replies = [
+      "Heisting in #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds!",
+      "#{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds until we play... guess this MixUp!",
+      "T minus #{days} days, #{hours} hours, #{minutes} minutes, #{seconds} Seconds",
+    ]
 
-          if minutes > 0
-            res.send "#{minutes} minutes to go"
-
-    if days > 0
-      replies = [
-        "Heisting in #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds!",
-        "#{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds until we play... guess this MixUp!",
-        "T minus #{days} days, #{hours} hours, #{minutes} minutes, #{seconds} Seconds",
-        "#{days}.#{hours}.#{minutes}.#{seconds}",
-        "#{days}D#{hours}H#{minutes}M#{seconds}S",
-      ]
-
-      res.send res.random replies
+    res.send res.random replies
