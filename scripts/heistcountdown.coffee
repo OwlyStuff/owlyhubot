@@ -14,7 +14,7 @@ module.exports = (robot) ->
 
     room = res.message.room
 
-    return if room != 'gta' && room != 'gaming' && room != 'infinity-testing'
+    return if room != 'fng' && room != 'gaming' && room != 'infinity-testing'
     # body...
 
 
