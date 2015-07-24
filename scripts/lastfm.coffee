@@ -9,7 +9,10 @@ module.exports = (robot) ->
               # passes back the complete reponse
               response = JSON.parse(body)
               if error == null
-                  track = response.recenttracks.track
-                  msg.send "Just played #{track.name} by #{track.artist.name}"
+                  track  = response.recenttracks.track
+                  images = track.artist.image
+                  [first, med, lastImage] = images
+                  msg.send "Just played #{track.name} by #{track.artist.name} - #{track.url}"
+                  msg.send "#{lastImage['#text']}"
               else
                   msg.send "Unable to get song right now."
