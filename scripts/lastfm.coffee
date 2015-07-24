@@ -34,7 +34,7 @@ module.exports = (robot) ->
               if error == null
                   track  = response.recenttracks.track
                   images = track.artist.image
-                  [first, med, lastImage] = images
+                  lastImage = images[images.length - 1]
                   msg.send "Just played #{track.name} by #{track.artist.name} - #{track.url}"
                   msg.send "#{lastImage['#text']}"
               else
