@@ -1,10 +1,33 @@
 # Description:
-#   Returns the last played song from lastfm
+#   Returns the last song played from the configured lastfm account
+#
+# Dependencies:
+#   None
+#
+# Configuration:
+#   HUBOT_LAST_FM_API_KEY
+#   HUBOT_LAST_FM_ACCOUNT_NAME
+#
+# Commands:
+#   hubot song me - Reply back with the last song played, link on lastfm, and an artist image.
+#
+# Author:
+#   catchamonkey
 
 module.exports = (robot) ->
 
+  apiKey  = process.env.HUBOT_LAST_FM_API_KEY
+  account = process.env.HUBOT_LAST_FM_ACCOUNT_NAME
+
   robot.respond /song me/i, (msg) ->
-      msg.http('http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=infinitycloud&api_key=c615dc032e5e2762397b37d88498a366&format=json&limit=1&extended=1')
+
+      if process.env.HUBOT_LAST_FM_API_KEY == undefined
+          msg.send 'You need to configure your lastfm API Key as an environment variable';
+
+      if process.env.HUBOT_LAST_FM_ACCOUNT_NAME == undefined
+          msg.send 'You need to configure your lastfm Account Name as an environment variable';
+
+      msg.http("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{HUBOT_LAST_FM_ACCOUNT_NAME}&api_key=#{HUBOT_LAST_FM_API_KEY}&format=json&limit=1&extended=1")
           .get() (error, response, body) ->
               # passes back the complete reponse
               response = JSON.parse(body)
