@@ -10,7 +10,7 @@
 
 module.exports = (robot) ->
 
-  robot.hear /heist/i, (res) ->
+  robot.hear /heist|fh2|rac[e]+s/i, (res) ->
 
     room = res.message.room
 
@@ -66,7 +66,7 @@ module.exports = (robot) ->
     timeToCalc = timeToCalc % second
 
     replies = [
-      "Heisting in #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds!",
+      "Gaming in #{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds!",
       "#{days} days, #{hours} hours, #{minutes} minutes, and #{seconds} seconds until we play... guess this MixUp!",
       "T minus #{days} days, #{hours} hours, #{minutes} minutes, #{seconds} Seconds",
     ]
