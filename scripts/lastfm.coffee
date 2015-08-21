@@ -23,9 +23,11 @@ module.exports = (robot) ->
 
       if process.env.HUBOT_LAST_FM_API_KEY == undefined
           msg.send 'You need to configure your lastfm API Key as an environment variable';
+          return
 
       if process.env.HUBOT_LAST_FM_ACCOUNT_NAME == undefined
           msg.send 'You need to configure your lastfm Account Name as an environment variable';
+          return
 
       msg.http("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{account}&api_key=#{apiKey}&format=json&limit=1&extended=1")
           .get() (error, response, body) ->
