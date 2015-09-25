@@ -10,7 +10,7 @@
 
 module.exports = (robot) ->
 
-  robot.hear /heist|fh2|rac[e]+s/i, (res) ->
+  robot.hear /heist|fh2|fng|rac[e]+s/i, (res) ->
 
     room = res.message.room
 
