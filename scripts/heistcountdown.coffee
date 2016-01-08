@@ -18,7 +18,8 @@ module.exports = (robot) ->
     # body...
 
 
-    tzOffset   = 1 # Timezone offset
+    # tzOffset   = 1 # Timezone offset
+    tzOffset   = 0 # Timezone offset
     dateOffset = new Date();
     dateOffset = (dateOffset.getTime() + (tzOffset * 3600 * 1000))
     dateNow    = new Date(dateOffset);
